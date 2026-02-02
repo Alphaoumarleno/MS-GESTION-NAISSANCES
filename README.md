@@ -1,50 +1,60 @@
-# React + TypeScript + Vite
+# 👶 MS-GESTION-NAISSANCES  
+### Système de gestion des déclarations de naissance
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🎓 **Projet académique – Cycle Ingénieur (Cloud & Systèmes Distribués)**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧭 Vue d’ensemble
 
-## Expanding the ESLint configuration
+**MS-GESTION-NAISSANCES** est une application **full-stack** destinée à la gestion et à la
+digitalisation des déclarations de naissance au sein d’un établissement de santé
+ou d’une administration d’état civil.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Le projet est structuré autour :
+- d’un **backend Spring Boot** exposant une API REST sécurisée,
+- d’un **frontend React** (dossier `website-naissance`) pour l’interface utilisateur,
+- d’un **pipeline CI/CD** pour l’automatisation des builds et du déploiement.
 
-- Configure the top-level `parserOptions` property like this:
+---
+![Schéma d’architecture](screenshots/login.png)
+## 🎯 Objectifs du projet
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Digitaliser le processus de déclaration de naissance
+- Centraliser et sécuriser les données d’état civil
+- Réduire les erreurs et les doublons
+- Assurer la traçabilité des opérations
+- Mettre en place une architecture full-stack maintenable
+- Automatiser l’intégration et le déploiement via CI/CD
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+##  Architecture du système
+![Schéma d’architecture](screenshots/architecture.png)
+**Frontend (React – website-naissance)**  
+⬇ API REST  
+**Backend (Spring Boot)**  
+⬇  
+**Base de données relationnelle**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+L’architecture repose sur une séparation claire :
+- présentation (React),
+- logique métier (Spring Services),
+- persistance (Spring Data JPA).
+
+---
+
+## 📁 Structure du projet
+
+```text
+MS-GESTION-NAISSANCES/
+├── src/                     # Backend Spring Boot
+│   ├── main/
+│   └── test/
+├── website-naissance/       # Frontend React
+│   ├── src/
+│   ├── public/
+│   └── package.json
+├── .github/workflows/       # CI/CD (GitHub Actions)
+├── pom.xml                  # Configuration Maven
+└── README.md
